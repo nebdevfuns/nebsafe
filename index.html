@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+
+
+<head>
+
+	<meta charset="UTF-8">
+
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+	<meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+	<meta http-equiv="Expires" content="Mon, 26 Jul 1997 05:00:00 GMT">
+	<meta http-equiv="Pragma" content="no-cache">
+
+	<title>NebSafe | Password Helper</title>	
+
+
+	<style>		
+
+		body { 
+
+			font-family: 'Work Sans', sans-serif;
+
+		 }
+
+		 .mfp-fade {
+
+			-webkit-transition: all 0.4s ease-out;
+
+			-moz-transition: all 0.4s ease-out;
+
+			transition: all 0.4s ease-out;
+
+		 }
+
+		.logo {
+
+			height: 100px;
+
+			width: 200px;		
+
+			margin: 0 auto 80px auto;
+
+		}
+
+
+
+		.logo img {					
+
+			height: 100%;
+
+		}
+
+		.content {			
+
+			width: 820px;
+
+			display: block;
+
+			margin: 30px auto 0 auto;								
+
+		}		
+
+		footer {
+
+			position: absolute;
+
+			width: 820px;
+
+			bottom: 15px;
+
+			display: block;						
+
+		    left: 50%;
+
+    		transform: translateX(-50%);    		
+
+		}
+
+		footer a {
+
+			margin-left: 580px;
+
+			text-decoration: none;
+
+			color: #000;
+
+			opacity: .7;
+
+		}
+
+		ul {
+
+			list-style: none;
+
+		}
+
+		li input {
+
+			width: 200px;			
+
+			border: none;			
+
+			background: #fff;
+
+			font-family: 'Work Sans', sans-serif;			
+
+			font-size: 16px;
+
+			color: rgba(0, 0 ,0 , .6);
+
+			padding: 15px 0 15px 0;
+
+		}		
+
+		li img{
+
+			height: 20px;		
+
+			vertical-align: middle;		
+
+			margin-right: 10px;
+
+			opacity: .7;
+
+			cursor: pointer;
+
+		}
+
+		li span {
+
+			width: 200px;			
+
+			display: inline-block;
+
+			font-size: 16px;
+
+			opacity: 1;
+
+		}
+
+		li {						
+
+			border-bottom: 1px solid rgba(0, 0 ,0 ,.05);	
+
+			padding-left: 1px;
+
+			position: relative;
+
+			width: 700px;
+
+		}
+
+		li:first-child{
+
+			border-bottom: none;			
+
+			margin-bottom: 30px;
+
+		}
+
+		.popup_add {			
+
+			background: linear-gradient(#42a1ec, #0070c9);
+
+			border: none;			
+
+			padding: 12px 20px;
+
+			color: #fff;			
+
+			border-radius: 2px;
+
+			font-family: 'Work Sans', sans-serif;			
+
+			font-size: 16px;
+
+			transition: 0.3s;
+
+			margin-left: 600px;
+
+		}
+
+		.popup_add:hover {
+
+			opacity: .6;
+
+		}
+
+		button:focus, a:focus {			
+
+			outline: none;
+
+		}		
+
+		.buttons {
+
+			right: 0;
+
+			bottom: 15px;
+
+			display: inline-block;
+
+			position: absolute;
+
+		}
+
+		.popup {
+
+			background: #fff;			
+
+			text-align: center;
+
+			width: 40%;
+
+			margin: 0 auto; 
+
+			padding: 20px 0 50px 0;
+
+		}
+
+		.popup input {
+
+			display: block;
+
+			margin: 0 auto;
+
+			padding: 7px 10px;
+
+			margin-bottom: 15px;
+
+			font-family: 'Work Sans', sans-serif;		
+
+			border: none;	
+
+			outline: none;
+
+			border-bottom: 1px solid rgba(0, 0, 0, .3);
+
+		}		
+
+		.popup .popup_add {
+
+			margin-left: unset;
+
+			margin-top: 10px;
+
+		}
+
+		h2 {
+
+			margin-bottom: 30px;
+
+		}
+
+		.mfp-close {
+
+			margin-right: 30%;
+
+		}
+
+		.tooltip {			
+
+			color: #fff; 
+
+			font-size: 12px;
+
+			position: absolute;
+
+			left: 15px;
+
+			border-radius: 2px;
+
+			top: 25px;	
+
+			display: none;		
+
+			z-index: 10;
+
+			padding: 5px 7px;
+
+			background: linear-gradient(#42a1ec, #0070c9);		      
+
+		}
+
+		.pass_update {
+
+			position: relative;
+
+			width: 220px;
+
+			margin: 0 auto; 
+
+		}
+
+		#popup_update .pass_update .eye {
+
+			height: 20px;		
+
+			vertical-align: middle;					
+
+			opacity: .7;
+
+			cursor: pointer;
+
+			position: absolute;
+
+			bottom: 7px;
+
+    		right: 20px;
+
+		}
+
+	</style>		
+
+</head>    
+
+
+
+<body>	
+
+	 <div class="content">	 
+
+	 	<div class="logo"><img src="img/logo.png" alt=""></div>	
+
+		<ul class="main_response">
+
+			<li><span>Website</span><span>Login</span><span>Password</span></li>
+
+		</ul>
+
+		<div class="noData"></div>
+
+		<div class="add_new"></div>
+
+		<button href='#popup_add' class="magnific popup_add">Add new note</button>		
+
+	</div>
+
+
+
+	<div class="noExtension" style="display: none"> 
+
+		NOTE: Please install <a target="_blank" href="https://github.com/ChengOrangeJu/WebExtensionWallet">WebExtensionWallet</a>  to use NebSafe or try CTRL+F5
+
+	</div>
+
+
+
+	<div class="errNetwork" style="display: none">
+
+		NOTE: Sorry, you use incorrect net
+
+	</div>
+
+	
+
+	<div id="popup_add" class="popup mfp-fade mfp-hide">
+
+  		<h2>Add new note to the list</h2>
+
+  		<input class='web' type="text" placeholder="website">
+
+  		<input class='login' type="text" placeholder="login">
+
+  		<input class='password' type="password" placeholder="password">
+
+  		<button class="push popup_add">Add new note</button>
+
+	</div>
+
+
+
+	<div id="popup_update" class="popup mfp-fade mfp-hide">
+
+  		<h2>Update the note</h2>
+
+  		<input class='web' type="text" placeholder="website">
+
+  		<input class='login' type="text" placeholder="login">
+
+  		<div class="pass_update">
+
+  			<input class='password' type="password" data-index='' placeholder="password"><img class="eye" title="show password" src="img/icons8-eye-30.png" alt="" />  		
+
+  		</div>
+
+  		<button class="udpate popup_add">Update</button>
+
+	</div>
+	
+	<div id="dialog" style="text-align: center; z-index: 100; width: 100vw; position: absolute; top: 0; left: 0; padding-top: 200px;height: 100vh; background: #fff" title="Basic dialog">
+	  <p style="font-size: 22px;">Enter a phrase to encrypt and decrypt your passwords, please. <br>You will need to use it while using the app</p>
+	  <input type="text" class="secretphrase" style="height: 37px; vertical-align: top;">
+	  <button id="first_pop" class="popup_add" style="margin: unset;">Ok</button>
+	  <div class="err_resp_pop" style="margin-top: 20px;"></div>
+	</div>
+
+	<footer><a href="mailto:nebulasdevfans@gmail.com">nebulasdevfans@gmail.com</a></footer>
+
+	
+	<script src='lib/jquery-3.3.1.min.js'></script>
+    <script src='lib/nebPay.js'></script>    	
+    <script src='lib/jquery.magnific-popup.js'></script> 	
+    <script src='lib/clipboard.min.js'></script>   
+    <script src="lib/aes.js"></script>
+        
+
+    <script>
+		window.onload = function(){					
+		if(typeof(webExtensionWallet) === "undefined"){	    
+
+	        $(".noExtension").show();	  
+
+	        $(".content").hide();
+
+	    }else{	    		        
+
+	    }
+ 	};
+	</script>
+
+    <link rel="stylesheet" href="lib/magnific-popup.css">    
+	
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet">
+
+	<script>	
+
+		secretphrase = $('.secretphrase').val();
+		$('#first_pop').click(function() {							
+				secretphrase = $('.secretphrase').val();
+				$('#dialog').hide();
+
+				var to = dappAddress;
+
+	        var value = "0";
+
+	        var callFunction = "read";
+
+	        var callArgs = ""; 
+
+	        nebPay.simulateCall(to, value, callFunction, callArgs, { 
+
+	            listener: cbSearch
+
+	        });
+				
+		})		
+
+		 $('#popup_update .pass_update .eye').click(function(){		
+
+	 		if ($(this).hasClass('view')) {					 			
+
+	 			$(this).parent().find('.password').attr('type', 'password');						
+
+	 			$(this).attr('src', 'img/icons8-eye-30.png');
+
+				$(this).removeClass('view');													
+
+				$(this).attr('title','show password');
+
+	 		} else {
+
+	 			$(this).parent().find('.password').attr('type', 'text');							 				 			
+
+	 			$(this).addClass('view');		 			
+
+				$(this).attr('src', 'img/icons8-invisible-30.png');				
+
+				$(this).attr('title','hide password');			
+
+	 		}	 		   					 							 		
+
+		});	 
+
+		$('.magnific').magnificPopup({
+
+			type:'inline',
+
+			// midClick: true, // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.
+
+			fixedContentPos: true, 
+
+			mainClass: 'mfp-fade',      
+
+			showCloseBtn: true,
+
+			closeOnBgClick: true
+
+		});					
+
+	    var NebPay = require("nebpay");   
+
+	    var nebPay = new NebPay();
+   
+
+
+
+		var dappAddress = "n1zD9CqBUsTcM95Yf78AeDs8vNxLHSWSgpy";
+
+
+
+		// $(document).ready(function(){				    
+
+	 //        var to = dappAddress;
+
+	 //        var value = "0";
+
+	 //        var callFunction = "read";
+
+	 //        var callArgs = ""; 
+
+	 //        nebPay.simulateCall(to, value, callFunction, callArgs, { 
+
+	 //            listener: cbSearch
+
+	 //        });
+
+	 //    })
+
+	     
+
+	    function cbSearch(resp) {
+
+	        var result = resp.result
+
+	        console.log("return of rpc call: " + JSON.stringify(result))
+
+	        if (result === ''){	        	
+
+	            $(".errNetwork").show();	  
+
+	        	$(".content").hide();
+
+	        } else{	            
+
+	            try{
+
+	                result = JSON.parse(result)
+
+	            }catch (err){	                
+
+	            }
+	            if (!!result[0].website){     
+
+	            	var decryptedBytes = CryptoJS.AES.decrypt(result[0].password, secretphrase);
+					var password_decr = decryptedBytes.toString(CryptoJS.enc.Utf8);					
+					$('.err_resp_pop').html('');
+					if (password_decr == '') {
+						$('#dialog').show();
+						$('.err_resp_pop').append('You have entered the wrong encryption passphrase. Can\'t read your passwords. Please try again');							
+					};
+
+					$('.content').html("<div class=\"logo\"><img src=\"img/logo.png\" alt=\"\"></div><ul class=\"main_response\"><li><span>Website</span><span>Login</span><span>Password</span></li></ul><div class=\"noData\"></div><div class=\"add_new\"></div><button href='#popup_add' class=\"magnific popup_add\">Add new note</button>");
+
+					$.each(result,function(index,value){					 					
+					$('.main_response').append(('<li><input disabled class="web_value" type="text" value="' + result[index].website + '"/><input disabled class="login_value" type="text" value="' + result[index].login + '"/><input readonly class="pass_value" type="password" data-index="' + index + '" value="' + password_decr +'"/> <div class="buttons"><div class="tooltip">Copied</div><img class="eye" title="show password" src="img/icons8-eye-30.png" alt="" /><img data-clipboard-target="" title="copy password" class="copy" src="img/icons8-copy-30.png" alt="" /> <a href="#popup_update" class="update_magnific"><img class="update" title="update note" src="img/icons8-synchronize-30.png" alt="" /></a><img class="delete" title="delete note" src="img/icons8-multiply-30.png" alt="" /></div><input type="text" style="position: absolute; left: 0; opacity: 0; width: 0.1px" class="hidden_pass" value="' + password_decr +'"/></li>'));				  
+
+					});
+
+
+
+					 $('.delete').click(function() {
+
+
+
+				        var to = dappAddress;
+
+				        var value = "0";
+
+				        var callFunction = "delete"
+
+				        var callArgs = "[\"" + $(this).parent().parent().find('.pass_value').attr('data-index') + "\"]"
+
+				        console.log(callArgs)
+
+				        nebPay.call(to, value, callFunction, callArgs, {   
+
+				            listener: cbPush
+
+				        });
+
+				    });
+
+
+
+
+
+					 $('.eye').click(function(){		
+
+					 		if ($(this).hasClass('all_see')) {					 			
+
+					 			$(this).parent().parent().find('.pass_value').attr('type', 'password');						
+
+					 			$(this).attr('src', 'img/icons8-eye-30.png');
+
+								$(this).removeClass('all_see');													
+
+								$(this).attr('title','show password');
+
+					 		} else {
+
+					 			$(this).parent().parent().find('.pass_value').attr('type', 'text');						
+
+								$(this).attr('src', 'img/icons8-invisible-30.png');
+
+								$(this).addClass('all_see');	
+
+								$(this).attr('title','hide password');			
+
+					 		}	 		   					 							 		
+
+					});	 
+
+					$('.copy').click(function(){
+
+						$(".hidden_pass").removeClass('this_copy');						
+
+						$('.copy').attr('data-clipboard-target', '');
+
+						$('.tooltip').fadeOut();
+
+						var element_for_copy = $(this).parent().parent().find(".hidden_pass");
+
+						var tooltip_this = $(this).parent().find('.tooltip');
+
+						$(element_for_copy).addClass('this_copy');
+
+						$(this).attr('data-clipboard-target', '.this_copy');							
+
+						$(tooltip_this).fadeIn(200);						
+
+						$(tooltip_this).delay(300).fadeOut(200);
+
+					})
+
+					new ClipboardJS('.copy');
+
+					$('.update_magnific').magnificPopup({
+
+						type:'inline',						
+
+						fixedContentPos: true, 
+
+						mainClass: 'mfp-fade',      
+
+						showCloseBtn: true,
+
+						closeOnBgClick: true
+
+					});	
+
+					$('.update_magnific').click(function() {
+
+						var web_this = $(this).parent().parent().find('.web_value').val();						 
+
+						var loging_this = $(this).parent().parent().find('.login_value').val();
+
+						var pass_this = $(this).parent().parent().find('.pass_value').val();
+
+						var data_index = $(this).parent().parent().find('.pass_value').attr('data-index');
+
+						$('#popup_update .web').val(web_this);
+
+						$('#popup_update .login').val(loging_this);
+
+						$('#popup_update .password').val(pass_this);
+
+						$('#popup_update .password').attr('data-index', data_index);
+
+					})
+
+
+
+	            } else {       
+
+	                  $('.noData').html('You have no data')
+
+	            }
+
+
+
+	        }
+
+
+
+	    }
+
+
+
+		$(".push").click(function() {
+
+
+
+	        var to = dappAddress;
+
+	        var value = "0";
+
+	        var callFunction = "create"
+
+	        var pass_for_crypt = $('#popup_add .password').val();
+            var encryptedAES = CryptoJS.AES.encrypt(pass_for_crypt, secretphrase);
+	        var callArgs = "[\"" + $("#popup_add .web").val() + "\",\"" + $("#popup_add .login").val() + "\",\"" +  encryptedAES + "\"]"
+
+	        console.log(callArgs)
+
+	        nebPay.call(to, value, callFunction, callArgs, {   
+
+	            listener: cbPush
+
+	        });	       	        
+
+		});	       
+
+
+
+	    function cbPush(resp) {
+
+	        console.log("response of push: " + resp);	        
+
+	        setTimeout(function(){
+
+			    window.location.reload(true);
+
+			},18500);
+
+	    }
+
+	    
+
+	    $('.udpate').click(function() {
+	        var to = dappAddress;
+
+	        var value = "0";
+
+	        var callFunction = "update"
+
+	        var callArgs = "[\"" + $("#popup_update .password").attr('data-index') + "\",\"" + $("#popup_update .web").val() + "\",\"" + $("#popup_update .login").val() + "\",\"" + $('#popup_update .password').val() + "\"]"
+
+	        console.log(callArgs)
+
+	        nebPay.call(to, value, callFunction, callArgs, {
+
+	            listener: cbPush
+
+	        });
+
+	    });
+
+	   
+
+
+
+	</script>	
+
+
+
+</body>
+
+</html>
